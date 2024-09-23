@@ -18,7 +18,7 @@ Function updateMessage(string memory newMessage) public { }: esta função públ
 
 ## Aula 2:
 
-# Desafio: Crie um contrato que armazena um endereço de uma carteira Ethereum, e uma função que permite atualizar esse endereço.
+### Desafio: Crie um contrato que armazena um endereço de uma carteira Ethereum, e uma função que permite atualizar esse endereço.
 
 `storageAddress`: armazena um endereço Ethereum.
 
