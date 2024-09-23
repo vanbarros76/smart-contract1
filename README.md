@@ -18,7 +18,7 @@ Function updateMessage(string memory newMessage) public { }: esta função públ
 
 ## Aula 2:
 
-### Desafio: Crie um contrato que armazena um endereço de uma carteira Ethereum, e uma função que permite atualizar esse endereço.
+**Desafio: Crie um contrato que armazena um endereço de uma carteira Ethereum, e uma função que permite atualizar esse endereço.**
 
 `storageAddress`: armazena um endereço Ethereum.
 
@@ -29,7 +29,7 @@ Function updateMessage(string memory newMessage) public { }: esta função públ
 
 ## Aula 3:
 
-### Desafio: Desenvolva um Smart Contract que seja capaz de armazenar o nome, idade e nacionalidade de uma pessoa brasileira em 3 variáveis distintas. O contrato deve dar a cada uma das variáveis, respectivamente, as visibilidades public, private e internal. Os dados da pessoa deverão ser "Isabella" para o nome, 10 para a idade e true para a nacionalidade brasileira, através do construtor. Desenvolva funções set e get necessárias, bem como funções para incrementar a idade da pessoa.
+**Desafio: Desenvolva um Smart Contract que seja capaz de armazenar o nome, idade e nacionalidade de uma pessoa brasileira em 3 variáveis distintas. O contrato deve dar a cada uma das variáveis, respectivamente, as visibilidades public, private e internal. Os dados da pessoa deverão ser "Isabella" para o nome, 10 para a idade e true para a nacionalidade brasileira, através do construtor. Desenvolva funções set e get necessárias, bem como funções para incrementar a idade da pessoa.**
 
 
 **Declaração de Variáveis**
