@@ -63,3 +63,29 @@ O modificador `pure` significa que esta função não lê nem escreve em variáv
 A função `incrementAge` usa a função `addValues` para incrementar a idade em 1. Ela é marcada como `external`, o que significa que só pode ser chamada de fora do contrato (não de dentro).
 
 
+## Aula 4:
+
+**Contrato ScholarHistory**
+
+Este contrato gerencia o status de uma nota com base em um valor fornecido.
+
+**Variável de Estado**
+
+A variável `gradeStatus` armazena o status da nota do aluno, como "Approved", "Reproved", etc. Como é pública, qualquer pessoa pode acessar seu valor diretamente na blockchain.
+
+**Construtor**
+
+O construtor inicializa a variável `gradeStatus` com o valor padrão "empty". Isso é útil para indicar que ainda não há uma nota registrada no contrato.
+
+**Função `updateGradeStatus`**
+
+A função `updateGradeStatus` recebe um valor inteiro _value.
+O primeiro if verifica se a nota está fora do intervalo aceitável (menor que 0 ou maior que 10). Se isso ocorrer, a função define o gradeStatus como "Error".
+Caso contrário, a função compara o valor da nota:
+Se for maior ou igual a 7, o aluno é aprovado, e o status é alterado para "Approved".
+Se a nota for exatamente 0, o status será "Zero".
+Para notas entre 1 e 6, o aluno é reprovado, e o status será "Reproved".
+
+Foi adicionada a variável `studentName` para armazenar o nome do aluno.
+A função `updateGradeStatus` recebe um segundo argumento _name para armazenar o nome do aluno.
+A função `getStudentInfo` retorna tanto o nome do aluno quanto o status da nota, para facilitar a consulta das informações.
