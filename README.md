@@ -90,6 +90,7 @@ Foi adicionada a variável `studentName` para armazenar o nome do aluno.
 A função `updateGradeStatus` recebe um segundo argumento _name para armazenar o nome do aluno.
 A função `getStudentInfo` retorna tanto o nome do aluno quanto o status da nota, para facilitar a consulta das informações.
 
+
 ## Aula 5:
 
 Esse contrato inteligente chamado `Petition` armazena até três nomes em um vetor de strings. Ele também permite registrar nomes até o limite de três, verificar um nome específico pelo índice e verificar se a petição está completa (ou seja, se já foram registrados três nomes). Aqui está uma explicação detalhada do funcionamento de cada parte:
@@ -119,7 +120,6 @@ Inicializa o contrato definindo o `nameCount` como 0. Isso significa que nenhum 
 - Essa função permite que qualquer pessoa recupere um nome armazenado no vetor `names` baseado no índice fornecido (_id).
 
 - A função verifica se o índice está dentro dos limites do vetor (menor que 3), caso contrário, retorna uma mensagem de erro "Error: index out of bounds".
-
 
 3- `isPetitionFull()`: 
 
@@ -187,6 +187,73 @@ Depois de registrar os nomes, você pode alterar o status associado a cada um. P
 - `changeStatus(0, "approved")` mudará o status de "Alice" para `"approved"`.
 
 - `changeStatus(1, "pending")` mudará o status de "Bob" para `"pending"`.
+
+**Benefícios do Design:**
+
+- Simplicidade: O contrato mantém a lógica simples para registrar nomes e gerenciar seus status.
+
+- Facilidade de Modificação: Funções como `changeStatus` permitem facilmente modificar o estado de cada registro de nome sem a necessidade de acessar diretamente os arrays.
+
+
+## Aula 7:
+
+O contrato `Petition` permite registrar nomes em uma petição, com um limite de três nomes armazenados em um array fixo e quaisquer nomes extras armazenados em um array dinâmico. O contrato também permite alterar o status de cada nome registrado e consultar se a petição está cheia (com pelo menos três nomes).
+
+**Variáveis do Contrato**
+
+- names: Array fixo com tamanho 3 para armazenar os primeiros três nomes.
+
+- extraNames: Array dinâmico para armazenar nomes extras além dos três primeiros.
+
+- nameCount: Contador de quantos nomes foram registrados.
+
+- status: Mapeamento que relaciona um ID de nome a um status (inicialmente `"undefined"`).
+
+**Função `registerName`**
+
+- Armazena o nome recebido por parâmetro no array fixo `names` se o número de nomes registrados for menor que 3.
+
+- Se já houver 3 nomes registrados, o nome é adicionado ao array dinâmico `extraNames`.
+
+- O status do nome é definido como `"undefined"`, e o contador `nameCount` é incrementado.
+
+**Função `getName`**
+
+Retorna o nome com base no ID passado. Se o ID for menor que 3, retorna o nome do array `names`. Caso contrário, retorna o nome do array `extraNames` com um ajuste de índice (subtraindo 3 para compensar os nomes fixos já registrados).
+
+**Função `isPetitionFull`**
+
+Retorna `true` se já houver pelo menos 3 nomes registrados, indicando que a petição está "cheia" nos seus três primeiros slots.
+
+
+**Função `changeStatus`**
+
+Permite alterar o status de um nome registrado, verificando se o ID é válido (menor que `nameCount`).
+
+**Exemplos de Uso**
+
+1- Registrar Nomes:
+
+- Suponha que você chame a função `registerName("Alice")`, depois `registerName("Bob")`, e então `registerName("Charlie")`. Esses nomes serão armazenados no array fixo `names`.
+
+- Se você adicionar um quarto nome, como `registerName("David")`, ele será armazenado no array dinâmico `extraNames`.
+
+2- Recuperar Nomes:
+
+- Para consultar o nome de ID 0 (primeiro nome registrado), você chamaria `getName(0)` e obteria `"Alice"`.
+
+- Para consultar o quarto nome (ID 3), você chamaria `getName(3)` e obteria `"David"`.
+
+3- Alterar Status:
+
+Para alterar o status de um nome, você pode chamar `changeStatus(0, "approved")`. O status de `"Alice"` agora será `"approved"`.
+
+**Observações:**
+
+- O contrato suporta o armazenamento de um número ilimitado de nomes no array dinâmico `extraNames` além dos três primeiros.
+
+- O mapeamento de status pode ser útil para rastrear a aprovação ou rejeição de cada participante da petição.
+
 
 
 
