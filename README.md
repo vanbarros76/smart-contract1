@@ -32,7 +32,7 @@
 **Desafio: Desenvolva um Smart Contract que seja capaz de armazenar o nome, idade e nacionalidade de uma pessoa brasileira em 3 variáveis distintas. O contrato deve dar a cada uma das variáveis, respectivamente, as visibilidades public, private e internal. Os dados da pessoa deverão ser "Isabella" para o nome, 10 para a idade e true para a nacionalidade brasileira, através do construtor. Desenvolva funções set e get necessárias, bem como funções para incrementar a idade da pessoa.**
 
 
-**Declaração de Variáveis**
+**Declaração de Variáveis:**
 
 - `name`: Uma variável pública que armazena o nome da pessoa. Como é pública, qualquer pessoa pode ver seu valor diretamente, sem necessidade de uma função getter.
 
@@ -40,11 +40,11 @@
 
 - `brazilian`: Uma variável interna que armazena um valor booleano (`true` ou `false`) indicando se a pessoa é brasileira. Variáveis internas são acessíveis apenas dentro do contrato e em contratos que herdam dele.
 
-**Construtor**
+**Construtor:**
 
 O construtor inicializa o contrato com os valores padrão: nome "Isabella", idade 10, e a pessoa como brasileira. O construtor é executado uma única vez, quando o contrato é implantado na blockchain.
 
-**Funções de Setters e Getters**
+**Funções de Setters e Getters:**
 
 - As funções `setName` e `getName`permitem que qualquer pessoa altere o nome e a idade armazenados no contrato. A função `setName` recebe um valor string e a `setAge` recebe um valor uint (inteiro sem sinal).
 
@@ -52,32 +52,32 @@ O construtor inicializa o contrato com os valores padrão: nome "Isabella", idad
 
 - As funções `setNationalityBR` e `getNationalityBR` permitem definir e obter o valor booleano que indica se a pessoa é brasileira ou não. `setNationalityBR` recebe um parâmetro _braz (booleano) e `getNationalityBR` retorna o valor atual da variável `brazilian`.
 
-**Função Interna para Adição**
+**Função Interna para Adição:**
 
 - A função `addValues` é uma função interna que adiciona dois valores inteiros. Como é `internal`, ela só pode ser chamada dentro deste contrato ou de contratos que herdem dele.
 
 - O modificador `pure` significa que esta função não lê nem escreve em variáveis de estado, apenas opera sobre os parâmetros fornecidos.
 
-**Função para Incrementar a Idade**
+**Função para Incrementar a Idade:**
 
 A função `incrementAge` usa a função `addValues` para incrementar a idade em 1. Ela é marcada como `external`, o que significa que só pode ser chamada de fora do contrato (não de dentro).
 
 
 ## Aula 4:
 
-**Contrato ScholarHistory**
+**Contrato ScholarHistory:**
 
 Este contrato gerencia o status de uma nota com base em um valor fornecido.
 
-**Variável de Estado**
+**Variável de Estado:**
 
 A variável `gradeStatus` armazena o status da nota do aluno, como "Approved", "Reproved", etc. Como é pública, qualquer pessoa pode acessar seu valor diretamente na blockchain.
 
-**Construtor**
+**Construtor:**
 
 O construtor inicializa a variável `gradeStatus` com o valor padrão "empty". Isso é útil para indicar que ainda não há uma nota registrada no contrato.
 
-**Função `updateGradeStatus`**
+**Função `updateGradeStatus`:**
 
 - A função `updateGradeStatus` recebe um valor inteiro _value.
 
@@ -99,17 +99,17 @@ III -Para notas entre 1 e 6, o aluno é reprovado, e o status será "Reproved".
 
 Esse contrato inteligente chamado `Petition` armazena até três nomes em um vetor de strings. Ele também permite registrar nomes até o limite de três, verificar um nome específico pelo índice e verificar se a petição está completa (ou seja, se já foram registrados três nomes). Aqui está uma explicação detalhada do funcionamento de cada parte:
 
-**Variáveis de Estado**
+**Variáveis de Estado:**
 
 - `string[3] private names`: Um vetor de strings de tamanho fixo (3) que armazena os nomes. A visibilidade é privada, então apenas funções dentro do contrato podem acessar essa variável.
 
 - `uint256 public nameCount`: Um contador público que mantém o número de nomes registrados. Como ele é público, qualquer pessoa pode verificar o número de nomes sem a necessidade de uma função getter.
 
-**Constructor**
+**Constructor:**
 
 Inicializa o contrato definindo o `nameCount` como 0. Isso significa que nenhum nome foi registrado quando o contrato é implantado.
 
-**Funções do Contrato**
+**Funções do Contrato:**
 
 1- `register name`: 
 
@@ -136,7 +136,7 @@ Inicializa o contrato definindo o `nameCount` como 0. Isso significa que nenhum 
 
 Este contrato inteligente chamado `Petition` permite registrar até três nomes e associar a cada nome um status usando um `mapping`. Aqui está uma explicação detalhada de cada parte do contrato:
 
-**Variáveis de Estado**
+**Variáveis de Estado:**
 
 - `string[3] private names`: Um vetor de strings de tamanho fixo (3) que armazena os nomes. A visibilidade é privada, então o acesso direto ao vetor não é permitido de fora do contrato.
 
@@ -144,11 +144,11 @@ Este contrato inteligente chamado `Petition` permite registrar até três nomes 
 
 - `mapping(uint256 => string) public status`: Um mapeamento público que armazena o status associado a cada nome. O índice (chave) é baseado na posição no vetor `names`.
 
-**Constructor**
+**Constructor:**
 
 Inicializa o contrato com `nameCount` igual a 0, indicando que nenhum nome foi registrado.
 
-**Funções do Contrato**
+**Funções do Contrato:**
 
 1- `registerName`:
 
@@ -176,7 +176,7 @@ Verifica se o vetor `names` está cheio, ou seja, se três nomes já foram regis
 
 - A função verifica se o índice (_id) é válido (menor que o número de nomes registrados). Se for, atualiza o `status` associado a esse nome.
 
-**Exemplo de Funcionamento**
+**Exemplo de Funcionamento:**
 
 1- Registrar Nomes:
 
@@ -203,7 +203,7 @@ Depois de registrar os nomes, você pode alterar o status associado a cada um. P
 
 O contrato `Petition` permite registrar nomes em uma petição, com um limite de três nomes armazenados em um array fixo e quaisquer nomes extras armazenados em um array dinâmico. O contrato também permite alterar o status de cada nome registrado e consultar se a petição está cheia (com pelo menos três nomes).
 
-**Variáveis do Contrato**
+**Variáveis do Contrato:**
 
 - names: Array fixo com tamanho 3 para armazenar os primeiros três nomes.
 
@@ -213,7 +213,7 @@ O contrato `Petition` permite registrar nomes em uma petição, com um limite de
 
 - status: Mapeamento que relaciona um ID de nome a um status (inicialmente `"undefined"`).
 
-**Função `registerName`**
+**Função `registerName`:**
 
 - Armazena o nome recebido por parâmetro no array fixo `names` se o número de nomes registrados for menor que 3.
 
@@ -221,7 +221,7 @@ O contrato `Petition` permite registrar nomes em uma petição, com um limite de
 
 - O status do nome é definido como `"undefined"`, e o contador `nameCount` é incrementado.
 
-**Função `getName`**
+**Função `getName`:**
 
 Retorna o nome com base no ID passado. Se o ID for menor que 3, retorna o nome do array `names`. Caso contrário, retorna o nome do array `extraNames` com um ajuste de índice (subtraindo 3 para compensar os nomes fixos já registrados).
 
@@ -230,11 +230,11 @@ Retorna o nome com base no ID passado. Se o ID for menor que 3, retorna o nome d
 Retorna `true` se já houver pelo menos 3 nomes registrados, indicando que a petição está "cheia" nos seus três primeiros slots.
 
 
-**Função `changeStatus`**
+**Função `changeStatus`:**
 
 Permite alterar o status de um nome registrado, verificando se o ID é válido (menor que `nameCount`).
 
-**Exemplos de Uso**
+**Exemplos de Uso:**
 
 1- Registrar Nomes:
 
