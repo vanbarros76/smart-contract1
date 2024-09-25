@@ -89,3 +89,47 @@ Para notas entre 1 e 6, o aluno é reprovado, e o status será "Reproved".
 Foi adicionada a variável `studentName` para armazenar o nome do aluno.
 A função `updateGradeStatus` recebe um segundo argumento _name para armazenar o nome do aluno.
 A função `getStudentInfo` retorna tanto o nome do aluno quanto o status da nota, para facilitar a consulta das informações.
+
+## Aula 5:
+
+Esse contrato inteligente chamado `Petition` armazena até três nomes em um vetor de strings. Ele também permite registrar nomes até o limite de três, verificar um nome específico pelo índice e verificar se a petição está completa (ou seja, se já foram registrados três nomes). Aqui está uma explicação detalhada do funcionamento de cada parte:
+
+**Variáveis de Estado**
+
+`string[3] private names`: Um vetor de strings de tamanho fixo (3) que armazena os nomes. A visibilidade é privada, então apenas funções dentro do contrato podem acessar essa variável.
+
+`uint256 public nameCount`: Um contador público que mantém o número de nomes registrados. Como ele é público, qualquer pessoa pode verificar o número de nomes sem a necessidade de uma função getter.
+
+**Constructor**
+
+Inicializa o contrato definindo o `nameCount` como 0. Isso significa que nenhum nome foi registrado quando o contrato é implantado.
+
+**Funções do Contrato**
+
+1- `register name`: 
+
+- Essa função recebe um nome (string) como argumento e o armazena no vetor `names` na posição indicada por `nameCount`.
+
+- O contrato verifica se já foram registrados três nomes com `if (nameCount < 3)` antes de adicionar um novo nome.
+
+- Se o vetor `names` já estiver cheio (ou seja, `nameCount == 3`), a função não faz nada.
+
+2- `getname`:
+
+- Essa função permite que qualquer pessoa recupere um nome armazenado no vetor `names` baseado no índice fornecido (_id).
+
+- A função verifica se o índice está dentro dos limites do vetor (menor que 3), caso contrário, retorna uma mensagem de erro "Error: index out of bounds".
+
+
+3- `isPetitionFull()`: 
+
+- Verifica se o vetor `names` está completo (ou seja, se três nomes já foram registrados).
+
+- A função retorna `true` se `nameCount` for maior ou igual a 3, e `false` caso contrário.
+
+
+
+
+
+
+     
