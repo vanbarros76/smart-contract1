@@ -96,9 +96,9 @@ Esse contrato inteligente chamado `Petition` armazena até três nomes em um vet
 
 **Variáveis de Estado**
 
-`string[3] private names`: Um vetor de strings de tamanho fixo (3) que armazena os nomes. A visibilidade é privada, então apenas funções dentro do contrato podem acessar essa variável.
+- `string[3] private names`: Um vetor de strings de tamanho fixo (3) que armazena os nomes. A visibilidade é privada, então apenas funções dentro do contrato podem acessar essa variável.
 
-`uint256 public nameCount`: Um contador público que mantém o número de nomes registrados. Como ele é público, qualquer pessoa pode verificar o número de nomes sem a necessidade de uma função getter.
+- `uint256 public nameCount`: Um contador público que mantém o número de nomes registrados. Como ele é público, qualquer pessoa pode verificar o número de nomes sem a necessidade de uma função getter.
 
 **Constructor**
 
@@ -126,6 +126,84 @@ Inicializa o contrato definindo o `nameCount` como 0. Isso significa que nenhum 
 - Verifica se o vetor `names` está completo (ou seja, se três nomes já foram registrados).
 
 - A função retorna `true` se `nameCount` for maior ou igual a 3, e `false` caso contrário.
+
+
+## Aula 6:
+
+Este contrato inteligente chamado `Petition` permite registrar até três nomes e associar a cada nome um status usando um `mapping`. Aqui está uma explicação detalhada de cada parte do contrato:
+
+**Variáveis de Estado**
+
+- `string[3] private names`: Um vetor de strings de tamanho fixo (3) que armazena os nomes. A visibilidade é privada, então o acesso direto ao vetor não é permitido de fora do contrato.
+
+- `uint256 public nameCount`: Um contador público que mantém o número de nomes registrados.
+
+- `mapping(uint256 => string) public status`: Um mapeamento público que armazena o status associado a cada nome. O índice (chave) é baseado na posição no vetor `names`.
+
+**Constructor**
+
+Inicializa o contrato com `nameCount` igual a 0, indicando que nenhum nome foi registrado.
+
+**Funções do Contrato**
+
+1- `registerName`:
+
+- Recebe um nome (_name) e o armazena na posição correspondente no vetor `names`, de acordo com o valor atual de `nameCount`.
+
+- Inicializa o `status` de cada nome como `"undefined"`.
+
+- A função verifica se o vetor ainda não está cheio (três nomes). Se estiver, o nome é registrado e `nameCount` é incrementado.
+
+- Se o vetor `names` estiver cheio (ou seja, `nameCount == 3`), o registro do nome é interrompido.
+
+2- `getName`:
+
+- Permite que qualquer pessoa recupere um nome armazenado no vetor `names` com base no índice fornecido (_id).
+
+- A função verifica se o índice está dentro dos limites do vetor (menor que 3). Se o índice for inválido, retorna a mensagem de erro `"Error: index out of bounds"`.
+
+3- `isPetitionFull`:
+
+Verifica se o vetor `names` está cheio, ou seja, se três nomes já foram registrados.
+
+4- `changeStatus`:
+
+- Permite alterar o `status` de um nome com base no seu índice (_id).
+
+- A função verifica se o índice (_id) é válido (menor que o número de nomes registrados). Se for, atualiza o `status` associado a esse nome.
+
+**Exemplo de Funcionamento**
+
+1- Registrar Nomes:
+
+- Suponha que você registre três nomes: "Alice", "Bob" e "Carol".
+
+- Após cada registro, o status correspondente será inicializado como `"undefined"`.
+
+2- Alterar Status:
+
+Depois de registrar os nomes, você pode alterar o status associado a cada um. Por exemplo:
+
+- `changeStatus(0, "approved")` mudará o status de "Alice" para `"approved"`.
+
+- `changeStatus(1, "pending")` mudará o status de "Bob" para `"pending"`.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
