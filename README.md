@@ -3,28 +3,28 @@
 
 ## Aula 1:
 
-Pragma solidity ^0.8.0; : define a versão do compilador Solidity que será usada.
+- Pragma solidity ^0.8.0; : define a versão do compilador Solidity que será usada.
 
-Contract HelloWorld { }: defini o nome do contrato. Todo o código entre {} faz parte desse contrato.
+- `contract HelloWorld { }`: defini o nome do contrato. Todo o código entre {} faz parte desse contrato.
 
-String public message; : foi criada uma variável pública do tipo `string`. No Solidity, variáveis públicas tem um `getter` automático, o que significa que qualquer pessoa pode ler o valor de `message`.
+- `string public message;` : foi criada uma variável pública do tipo `string`. No Solidity, variáveis públicas tem um `getter` automático, o que significa que qualquer pessoa pode ler o valor de `message`.
 
-UpdateCount: foi criada uma variável para contar quantas vezes a mensagem foi atualizada. 
+- `updateCount`: foi criada uma variável para contar quantas vezes a mensagem foi atualizada. 
 
-Constructor( ) { }: o construtor é uma função especial que é chamada apenas 1 vez, quando o contrato é implantado na blockchain. Aqui, foi definida a mensagem inicial como "Hello, Blockchain!", bem como iniciado em "0" o contador da var updateCount.
+- `constructor( ) { }`: o construtor é uma função especial que é chamada apenas 1 vez, quando o contrato é implantado na blockchain. Aqui, foi definida a mensagem inicial como "Hello, Blockchain!", bem como iniciado em "0" o contador da var updateCount.
 
-Function updateMessage(string memory newMessage) public { }: esta função pública permite que qualqer pessoa atualize a mensagem armazenada no contrato. Foi usado o `memory` para indicar qua a nova mesagem é temporária e existe apenas enquanto a função é executada. Além disso, toda vez que updateMessage é chamada, o contador updateCount é incrementado em 1.
+- `function updateMessage(string memory newMessage) public { }`: esta função pública permite que qualqer pessoa atualize a mensagem armazenada no contrato. Foi usado o `memory` para indicar qua a nova mesagem é temporária e existe apenas enquanto a função é executada. Além disso, toda vez que updateMessage é chamada, o contador updateCount é incrementado em 1.
 
 
 ## Aula 2:
 
 **Desafio: Crie um contrato que armazena um endereço de uma carteira Ethereum, e uma função que permite atualizar esse endereço.**
 
-`storageAddress`: armazena um endereço Ethereum.
+- `storageAddress`: armazena um endereço Ethereum.
 
-`msg.sender`: recupera o endereço de quem está chamando a função.
+- `msg.sender`: recupera o endereço de quem está chamando a função.
 
-`updateAddress`: permite atualizar o endereço armazenado com um novo.
+- `updateAddress`: permite atualizar o endereço armazenado com um novo.
 
 
 ## Aula 3:
@@ -34,11 +34,11 @@ Function updateMessage(string memory newMessage) public { }: esta função públ
 
 **Declaração de Variáveis**
 
-`name`: Uma variável pública que armazena o nome da pessoa. Como é pública, qualquer pessoa pode ver seu valor diretamente, sem necessidade de uma função getter.
+- `name`: Uma variável pública que armazena o nome da pessoa. Como é pública, qualquer pessoa pode ver seu valor diretamente, sem necessidade de uma função getter.
 
-`age`: Uma variável privada que armazena a idade da pessoa. Variáveis privadas só podem ser acessadas dentro do contrato.
+- `age`: Uma variável privada que armazena a idade da pessoa. Variáveis privadas só podem ser acessadas dentro do contrato.
 
-`brazilian`: Uma variável interna que armazena um valor booleano (`true` ou `false`) indicando se a pessoa é brasileira. Variáveis internas são acessíveis apenas dentro do contrato e em contratos que herdam dele.
+- `brazilian`: Uma variável interna que armazena um valor booleano (`true` ou `false`) indicando se a pessoa é brasileira. Variáveis internas são acessíveis apenas dentro do contrato e em contratos que herdam dele.
 
 **Construtor**
 
@@ -46,17 +46,17 @@ O construtor inicializa o contrato com os valores padrão: nome "Isabella", idad
 
 **Funções de Setters e Getters**
 
-As funções `setName` e `getName`permitem que qualquer pessoa altere o nome e a idade armazenados no contrato. A função `setName` recebe um valor string e a `setAge` recebe um valor uint (inteiro sem sinal).
+- As funções `setName` e `getName`permitem que qualquer pessoa altere o nome e a idade armazenados no contrato. A função `setName` recebe um valor string e a `setAge` recebe um valor uint (inteiro sem sinal).
 
-Como a variável `age` é declarada como privada (lá no início do contrato), ela não pode ser acessada diretamente fora do contrato. Assim, a função `view` permite que qualquer pessoa apenas consulte a idade atual.
+- Como a variável `age` é declarada como privada (lá no início do contrato), ela não pode ser acessada diretamente fora do contrato. Assim, a função `view` permite que qualquer pessoa apenas consulte a idade atual.
 
-As funções `setNationalityBR` e `getNationalityBR` permitem definir e obter o valor booleano que indica se a pessoa é brasileira ou não. `setNationalityBR` recebe um parâmetro _braz (booleano) e `getNationalityBR` retorna o valor atual da variável `brazilian`.
+- As funções `setNationalityBR` e `getNationalityBR` permitem definir e obter o valor booleano que indica se a pessoa é brasileira ou não. `setNationalityBR` recebe um parâmetro _braz (booleano) e `getNationalityBR` retorna o valor atual da variável `brazilian`.
 
 **Função Interna para Adição**
 
-A função `addValues` é uma função interna que adiciona dois valores inteiros. Como é `internal`, ela só pode ser chamada dentro deste contrato ou de contratos que herdem dele.
+- A função `addValues` é uma função interna que adiciona dois valores inteiros. Como é `internal`, ela só pode ser chamada dentro deste contrato ou de contratos que herdem dele.
 
-O modificador `pure` significa que esta função não lê nem escreve em variáveis de estado, apenas opera sobre os parâmetros fornecidos.
+- O modificador `pure` significa que esta função não lê nem escreve em variáveis de estado, apenas opera sobre os parâmetros fornecidos.
 
 **Função para Incrementar a Idade**
 
@@ -79,16 +79,20 @@ O construtor inicializa a variável `gradeStatus` com o valor padrão "empty". I
 
 **Função `updateGradeStatus`**
 
-A função `updateGradeStatus` recebe um valor inteiro _value.
-O primeiro if verifica se a nota está fora do intervalo aceitável (menor que 0 ou maior que 10). Se isso ocorrer, a função define o gradeStatus como "Error".
-Caso contrário, a função compara o valor da nota:
-Se for maior ou igual a 7, o aluno é aprovado, e o status é alterado para "Approved".
-Se a nota for exatamente 0, o status será "Zero".
-Para notas entre 1 e 6, o aluno é reprovado, e o status será "Reproved".
+- A função `updateGradeStatus` recebe um valor inteiro _value.
 
-Foi adicionada a variável `studentName` para armazenar o nome do aluno.
-A função `updateGradeStatus` recebe um segundo argumento _name para armazenar o nome do aluno.
-A função `getStudentInfo` retorna tanto o nome do aluno quanto o status da nota, para facilitar a consulta das informações.
+- O primeiro if verifica se a nota está fora do intervalo aceitável (menor que 0 ou maior que 10). Se isso ocorrer, a função define o gradeStatus como "Error".
+
+- Caso contrário, a função compara o valor da nota:
+I- Se for maior ou igual a 7, o aluno é aprovado, e o status é alterado para "Approved".
+II- Se a nota for exatamente 0, o status será "Zero".
+III -Para notas entre 1 e 6, o aluno é reprovado, e o status será "Reproved".
+
+- Foi adicionada a variável `studentName` para armazenar o nome do aluno.
+
+- A função `updateGradeStatus` recebe um segundo argumento _name para armazenar o nome do aluno.
+
+- A função `getStudentInfo` retorna tanto o nome do aluno quanto o status da nota, para facilitar a consulta das informações.
 
 
 ## Aula 5:
