@@ -357,19 +357,19 @@ Este array dinâmico armazena múltiplas instâncias da `struct Person`. O array
 
 **Função addPerson:**
 
-Esta função permite adicionar uma nova pessoa ao array `people`. Os dados da pessoa (nome, idade, nacionalidade) são passados como parâmetros. O `gradeStatus` é inicialmente definido como `Undefined`.
+- Esta função permite adicionar uma nova pessoa ao array `people`. Os dados da pessoa (nome, idade, nacionalidade) são passados como parâmetros. O `gradeStatus` é inicialmente definido como `Undefined`.
 
 **Função updateGradeStatus:**
 
-Esta função atualiza o status da nota de uma pessoa específica, com base no `_id` da pessoa no array. Dependendo do valor da nota (`_value`), o `gradeStatus` é atualizado para `Approved`, `Reproved`, `Zero`, ou `Undefined`.
+- Esta função atualiza o status da nota de uma pessoa específica, com base no `_id` da pessoa no array. Dependendo do valor da nota (`_value`), o `gradeStatus` é atualizado para `Approved`, `Reproved`, `Zero`, ou `Undefined`.
 
 **Função getPerson:**
 
-Esta função permite recuperar as informações de uma pessoa pelo seu ID. Ela retorna o nome, idade, nacionalidade e o status da nota (convertido de `Status` para uma string).
+- Esta função permite recuperar as informações de uma pessoa pelo seu ID. Ela retorna o nome, idade, nacionalidade e o status da nota (convertido de `Status` para uma string).
 
 **Função updatePerson:**
 
-Esta função permite atualizar as informações básicas de uma pessoa (nome, idade, nacionalidade) usando o ID da pessoa no array.
+- Esta função permite atualizar as informações básicas de uma pessoa (nome, idade, nacionalidade) usando o ID da pessoa no array.
 
 
 
