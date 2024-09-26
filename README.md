@@ -353,7 +353,7 @@ A `struct Person` define uma pessoa com:
 
 **Array people:**
 
-Este array dinâmico armazena múltiplas instâncias da `struct Person`. O array é dinâmico para permitir a adição de pessoas usando a função `push`.
+- Este array dinâmico armazena múltiplas instâncias da `struct Person`. O array é dinâmico para permitir a adição de pessoas usando a função `push`.
 
 **Função addPerson:**
 
