@@ -259,6 +259,134 @@ Para alterar o status de um nome, você pode chamar `changeStatus(0, "approved")
 - O mapeamento de status pode ser útil para rastrear a aprovação ou rejeição de cada participante da petição.
 
 
+## Aula 8:
+
+Esse contrato `StorageV3` é um exemplo simples que armazena dados de uma pessoa e seu status em relação a notas, utilizando uma estrutura de dados (`struct`) e uma enumeração (`enum`) para organizar essas informações. Aqui está uma explicação detalhada de cada parte do contrato:
+
+**Enumeração Status:**
+
+A enumeração (`enum`) `Status` define quatro possíveis estados que representam o status da nota de uma pessoa. Cada valor é automaticamente associado a um número inteiro começando do 0:
+
+- `Zero` (0): Representa a situação em que a pessoa recebeu nota zero.
+
+- `Approved` (1): Representa aprovação, uma nota maior ou igual a 7.
+
+- `Reproved` (2): Representa reprovação, uma nota entre 1 e 6.
+
+- `Undefined` (3): Representa um estado indefinido, utilizado para casos em que a nota é inválida.
+
+**Estrutura Person:**
+
+A `struct` `Person` é uma estrutura de dados que armazena informações sobre uma pessoa. Ela contém os seguintes campos:
+
+- `name`: Uma string que armazena o nome da pessoa.
+
+- `age`: Um número inteiro (uint256) que armazena a idade da pessoa.
+
+- `brazilian`: Um booleano (bool) que indica se a pessoa é brasileira (`true` para brasileiro, `false` para estrangeiro).
+
+- `gradeStatus`: O status da nota da pessoa, que é do tipo `Status` (definido pela enumeração).
+
+**Variável p:**
+
+A variável `p` do tipo `Person` é pública e armazena os dados da pessoa. Isso significa que os valores dessa pessoa podem ser visualizados fora do contrato, mas só podem ser modificados pelas funções do contrato.
+
+**Construtor:**
+
+O construtor é executado apenas uma vez, quando o contrato é implantado. Ele inicializa os valores da pessoa com:
+
+- Nome: "Isa"
+- Idade: 10
+- Nacionalidade: brasileira (`true`)
+- Status da nota: `Undefined` (indefinido)
+
+**Funções de modificação:**
+
+As funções abaixo permitem modificar os atributos da pessoa:
+
+- `setName`: Esta função altera o nome da pessoa. Ela recebe como argumento uma string `_name` e atribui esse valor ao campo `name` da pessoa.
+
+- `setAge`: Esta função altera a idade da pessoa, recebendo um valor inteiro `_age` e atribuindo-o ao campo `age` da pessoa.
+
+- `setBrazilian`: Esta função altera a nacionalidade da pessoa. Recebe um valor booleano `_br` e o atribui ao campo `brazilian`.
+
+**Função updateGradeStatus:**
+
+Essa função atualiza o status da nota da pessoa com base em um valor inteiro `_value` (que deve estar entre 0 e 10). A lógica é a seguinte:
+
+- Se `_value` for maior ou igual a 7, o status da pessoa é atualizado para `Approved` (Aprovado).
+
+- Se `_value` for 0, o status é atualizado para `Zero`.
+
+- Se `_value` estiver entre 1 e 6, o status é atualizado para `Reproved` (Reprovado).
+
+- Se `_value` estiver fora do intervalo de 0 a 10, o status é definido como `Undefined` (Indefinido).
+
+
+## Aula 9:
+
+Este contrato StorageV4 foi modificado para permitir o gerenciamento dinâmico de várias pessoas, usando um array de structs `Person`. Aqui está a explicação detalhada:
+
+**Enumeração Status:**
+
+Esta enum define os possíveis status de uma nota:
+
+- `Zero` (0): Quando a nota é zero.
+
+- `Approved` (1): Quando a pessoa está aprovada (nota >= 7).
+
+- `Reproved` (2): Quando a pessoa está reprovada (nota entre 1 e 6).
+
+- `Undefined` (3): Quando o valor da nota é inválido.
+
+**Estrutura Person:**
+
+A `struct Person` define uma pessoa com:
+
+- `name`: O nome da pessoa.
+
+- `age`: A idade da pessoa.
+
+- `brazilian`: Se a pessoa é brasileira (booleano).
+
+- `gradeStatus`: O status da nota, do tipo `Status` (definido acima).
+
+**Array people:**
+
+Este array dinâmico armazena múltiplas instâncias da `struct Person`. O array é dinâmico para permitir a adição de pessoas usando a função `push`.
+
+**Função addPerson:**
+
+Esta função permite adicionar uma nova pessoa ao array `people`. Os dados da pessoa (nome, idade, nacionalidade) são passados como parâmetros. O `gradeStatus` é inicialmente definido como `Undefined`.
+
+**Função updateGradeStatus:**
+
+Esta função atualiza o status da nota de uma pessoa específica, com base no `_id` da pessoa no array. Dependendo do valor da nota (`_value`), o `gradeStatus` é atualizado para `Approved`, `Reproved`, `Zero`, ou `Undefined`.
+
+**Função getPerson:**
+
+Esta função permite recuperar as informações de uma pessoa pelo seu ID. Ela retorna o nome, idade, nacionalidade e o status da nota (convertido de `Status` para uma string).
+
+**Função updatePerson:**
+
+Esta função permite atualizar as informações básicas de uma pessoa (nome, idade, nacionalidade) usando o ID da pessoa no array.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
